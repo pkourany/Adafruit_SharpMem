@@ -1,3 +1,6 @@
+//This file is named glcdfont.c in the original library but the
+//Spark Web IDE does not allowing renaming of the extension to .c
+
 #include "glcdfont.h"
 
  
