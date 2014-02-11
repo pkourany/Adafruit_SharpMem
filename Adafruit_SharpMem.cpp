@@ -59,7 +59,11 @@ Adafruit_GFX(SHARPMEM_LCDWIDTH, SHARPMEM_LCDHEIGHT) {
   pinMode(_ss, OUTPUT);
   pinMode(_clk, OUTPUT);
   pinMode(_mosi, OUTPUT);
-/*  
+
+/* This code does not work in the Spark environment.  It is replaced with
+   PIN_MAP[pin].gpio_peripheral->BRR = PIN_MAP[pin].gpio_pin commands
+   (BBR=write LOW, BSRR=write HIGH)
+   
   clkport     = portOutputRegister(digitalPinToPort(_clk));
   clkpinmask  = digitalPinToBitMask(_clk);
   dataport    = portOutputRegister(digitalPinToPort(_mosi));
