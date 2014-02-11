@@ -25,7 +25,7 @@ BSD license, check license.txt for more information
 All text above, and the splash screen must be included in any redistribution
 *********************************************************************/
 
-
+// THESE DEFINITIONS ALREADY EXIST IN THE SPARK ENVIRONMENT
 // any pins can be used
 //#define SCK 10
 //#define MOSI 11
