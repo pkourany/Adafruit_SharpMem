@@ -31,13 +31,14 @@ All text above, and the splash screen must be included in any redistribution
 //#define MOSI 11
 //#define SS 13
 
-Adafruit_SharpMem display(SCK, MOSI, SS);
+Adafruit_SharpMem display(D3, D4, D5);    //SCK, MOSI, SS
 
 #define BLACK 0
 #define WHITE 1
 
 void setup(void) 
 {
+  display.init();       // Initialize the hardware ports since cannot be done in class instantation above
   Serial.begin(9600);
   Serial.println("Hello!");
 
