@@ -38,12 +38,12 @@ Adafruit_SharpMem display(D3, D4, D5);    //SCK, MOSI, SS
 
 void setup(void) 
 {
-  display.init();       // Initialize the hardware ports since cannot be done in class instantation above
   Serial.begin(9600);
   Serial.println("Hello!");
 
   // start & clear the display
   display.begin();
+  display.init();       // Initialize the hardware ports since cannot be done in class instantation above
   display.clearDisplay();
 
   // draw a single pixel
