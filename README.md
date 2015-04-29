@@ -16,4 +16,4 @@ A1            | CS
 
 ![](https://flic.kr/p/snkRYX)
 
-<img src="https://www.dropbox.com/s/rfxb8fwoquk72xq/Dustins%20Words%20SharpMem_bb.jpg?dl=0">
+<img src="../https://www.dropbox.com/s/rfxb8fwoquk72xq/Dustins%20Words%20SharpMem_bb.jpg?dl=0">
