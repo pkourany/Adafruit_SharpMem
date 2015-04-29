@@ -15,3 +15,5 @@ A3            | DI
 A1            | CS
 
 ![](https://flic.kr/p/snkRYX)
+
+<img src="https://flic.kr/p/snkRYX"
