@@ -14,6 +14,6 @@ A3            | CLK
 A3            | DI
 A1            | CS
 
-![](https://flic.kr/p/snkRYX)
+![](https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg)
 
-<img src="../https://www.dropbox.com/s/rfxb8fwoquk72xq/Dustins%20Words%20SharpMem_bb.jpg?dl=0">
+<img src="https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg">
