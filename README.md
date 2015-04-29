@@ -15,4 +15,4 @@ A3            | DI
 A1            | CS
 
 
-![fritzing of spark and sharpMem 96x96](https://flic.kr/p/snkRYX)
+https://flic.kr/p/snkRYX
