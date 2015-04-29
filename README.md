@@ -15,4 +15,4 @@ A3            | DI
 A1            | CS
 
 
-![fritzing of spark and sharpmem 96x96](https://www.flickr.com/photos/132833129@N08/17306797651/)
+![fritzing of spark and sharpmem 96x96](https://www.dropbox.com/s/ugu3ar3pbmzk3sh/Dustins%20Words%20SharpMem_bb.png?dl=0)
