@@ -13,3 +13,6 @@ GND           | GND
 A3            | CLK
 A3            | DI
 A1            | CS
+
+
+![alt tag](https://www.dropbox.com/s/xxemopx4zakcndy/Dustins%20Words%20SharpMem_bb.jpg?dl=0)
