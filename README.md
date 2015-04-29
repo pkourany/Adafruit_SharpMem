@@ -14,6 +14,5 @@ A3            | CLK
 A3            | DI
 A1            | CS
 
-![](https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg)
+![Spark and Sharp Memory 96x96](https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg)
 
-<img src="https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg">
