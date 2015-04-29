@@ -15,4 +15,4 @@ A3            | DI
 A1            | CS
 
 
-![alt tag](https://www.dropbox.com/s/rfxb8fwoquk72xq/Dustins%20Words%20SharpMem_bb.jpg?dl=0)
+![fritzing of spark and sharpmem 96x96](https://www.dropbox.com/s/rfxb8fwoquk72xq/Dustins%20Words%20SharpMem_bb.jpg?dl=0)
