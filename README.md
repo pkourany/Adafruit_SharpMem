@@ -14,5 +14,4 @@ A3            | CLK
 A3            | DI
 A1            | CS
 
-
-https://flic.kr/p/snkRYX
+![](https://flic.kr/p/snkRYX)
