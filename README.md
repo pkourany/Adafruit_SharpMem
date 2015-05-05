@@ -15,7 +15,7 @@ Spark         | Sharp
 3.3           | 3.3
 GND           | GND
 A3            | CLK
-A3            | DI
+A5            | DI
 A1            | CS
 
 ![Spark and Sharp Memory 96x96](https://raw.githubusercontent.com/dplumly/Dustins-Words/gh-pages/readme_img/Dustins%20Words%20SharpMem.jpg)
