@@ -1,3 +1,9 @@
+#ifndef _ADAFRUIT_GFX_H
+#define _ADAFRUIT_GFX_H
+
+#include "application.h"
+#include "fonts.h"
+
 
 #define swap(a, b) { int16_t t = a; a = b; b = t; }
 
@@ -19,7 +25,8 @@ class Adafruit_GFX : public Print {
     drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
     fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
     fillScreen(uint16_t color),
-    invertDisplay(boolean i);
+    invertDisplay(boolean i),
+    drawFastChar(int16_t x, int16_t y, unsigned char c, uint16_t color, uint16_t bg, uint8_t size);
 
   // These exist only with Adafruit_GFX (no subclass overrides)
   void
@@ -46,10 +53,10 @@ class Adafruit_GFX : public Print {
     setTextColor(uint16_t c, uint16_t bg),
     setTextSize(uint8_t s),
     setTextWrap(boolean w),
-    setRotation(uint8_t r);
+    setRotation(uint8_t r),
+    setFont(uint8_t f);
 
-
- virtual size_t write(uint8_t);
+  virtual size_t write(uint8_t);
 
 
   int16_t
@@ -68,8 +75,16 @@ class Adafruit_GFX : public Print {
     textcolor, textbgcolor;
   uint8_t
     textsize,
-    rotation;
+    rotation,
+    font,
+    fontStart,
+    fontEnd;
+  int8_t
+    fontKern;
+  const uint8_t* fontData;
+  const FontDescriptor* fontDesc;
   boolean
     wrap; // If set, 'wrap' text at right edge of display
 };
 
+#endif // _ADAFRUIT_GFX_H

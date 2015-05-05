@@ -51,20 +51,17 @@ Adafruit_GFX(SHARPMEM_LCDWIDTH, SHARPMEM_LCDHEIGHT) {
   _mosi = mosi;
   _ss = ss;
 
-  //Spark core firmware does not allow hardware initialization in class instantiation so move to init() method
-  /* Set pin state before direction to make sure they start this way (no glitching)
+/*  
+// Spark core firmware does not do hardware config in class inilization so move to init()
+// Set pin state before direction to make sure they start this way (no glitching)
   digitalWrite(_ss, HIGH);  
   digitalWrite(_clk, LOW);  
   digitalWrite(_mosi, HIGH);  
   
   pinMode(_ss, OUTPUT);
   pinMode(_clk, OUTPUT);
-  pinMode(_mosi, OUTPUT); */
-
-/* This code does not work in the Spark environment.  It is replaced with
-   PIN_MAP[pin].gpio_peripheral->BRR = PIN_MAP[pin].gpio_pin commands
-   (BBR=write LOW, BSRR=write HIGH)
-   
+  pinMode(_mosi, OUTPUT);
+  
   clkport     = portOutputRegister(digitalPinToPort(_clk));
   clkpinmask  = digitalPinToBitMask(_clk);
   dataport    = portOutputRegister(digitalPinToPort(_mosi));
@@ -73,6 +70,10 @@ Adafruit_GFX(SHARPMEM_LCDWIDTH, SHARPMEM_LCDHEIGHT) {
   // Set the vcom bit to a defined state
   _sharpmem_vcom = SHARPMEM_BIT_VCOM;
 
+}
+
+void Adafruit_SharpMem::begin() {
+  setRotation(2);
 }
 
 void Adafruit_SharpMem::init() {
@@ -84,11 +85,6 @@ void Adafruit_SharpMem::init() {
   pinMode(_ss, OUTPUT);
   pinMode(_clk, OUTPUT);
   pinMode(_mosi, OUTPUT);
-}
-
-
-void Adafruit_SharpMem::begin() {
-  setRotation(2);
 }
 
 /* *************** */
@@ -103,6 +99,8 @@ void Adafruit_SharpMem::begin() {
 /**************************************************************************/
 void Adafruit_SharpMem::sendbyte(uint8_t data) 
 {
+	SPI.transfer(data);
+/*
   uint8_t i = 0;
 
   // LCD expects LSB first
@@ -124,7 +122,6 @@ void Adafruit_SharpMem::sendbyte(uint8_t data)
     // Clock is active high
     //digitalWrite(_clk, HIGH);
     //*clkport |=  clkpinmask;
-	// DELAY HERE??  Data needs to be setup 380ns before clk
     PIN_MAP[_clk].gpio_peripheral->BSRR = PIN_MAP[_clk].gpio_pin;
     data <<= 1; 
   }
@@ -132,10 +129,15 @@ void Adafruit_SharpMem::sendbyte(uint8_t data)
   //digitalWrite(_clk, LOW);
   //*clkport &= ~clkpinmask;
   PIN_MAP[_clk].gpio_peripheral->BRR = PIN_MAP[_clk].gpio_pin;
+*/
 }
 
 void Adafruit_SharpMem::sendbyteLSB(uint8_t data) 
 {
+//	SPI.setBitOrder(LSBFIRST);
+	SPI.transfer(data);
+//	SPI.setBitOrder(MSBFIRST);
+/*
   uint8_t i = 0;
 
   // LCD expects LSB first
@@ -151,11 +153,12 @@ void Adafruit_SharpMem::sendbyteLSB(uint8_t data)
       PIN_MAP[_mosi].gpio_peripheral->BSRR = PIN_MAP[_mosi].gpio_pin;
     else 
       //digitalWrite(_mosi, LOW);
-      *dataport &= ~datapinmask;
+      //*dataport &= ~datapinmask;
       PIN_MAP[_mosi].gpio_peripheral->BRR = PIN_MAP[_mosi].gpio_pin;
     // Clock is active high
     //digitalWrite(_clk, HIGH);
     //*clkport |=  clkpinmask;
+	// DELAY HERE??  Data needs to be setup 380ns before clk
     PIN_MAP[_clk].gpio_peripheral->BSRR = PIN_MAP[_clk].gpio_pin;
     data >>= 1; 
   }
@@ -163,6 +166,8 @@ void Adafruit_SharpMem::sendbyteLSB(uint8_t data)
   //digitalWrite(_clk, LOW);
   //*clkport &= ~clkpinmask;
   PIN_MAP[_clk].gpio_peripheral->BRR = PIN_MAP[_clk].gpio_pin;
+  
+*/
 }
 /* ************** */
 /* PUBLIC METHODS */
@@ -219,7 +224,9 @@ void Adafruit_SharpMem::clearDisplay()
   digitalWrite(_ss, HIGH);
   delayMicroseconds(6);		//SS needs to be high 6us before data - Spark is FAST!
   sendbyte(_sharpmem_vcom | SHARPMEM_BIT_CLEAR);
+  SPI.setBitOrder(LSBFIRST);
   sendbyteLSB(0x00);
+  SPI.setBitOrder(MSBFIRST);
   TOGGLE_VCOM;
   delayMicroseconds(2);		//SS needs to be low 2us after data before going high - Spark is FAST!
   digitalWrite(_ss, LOW);
@@ -237,9 +244,11 @@ void Adafruit_SharpMem::refresh(void)
 
   // Send the write command
   digitalWrite(_ss, HIGH);
-  delayMicroseconds(6);		//SS needs to be high 6us before data - Spark is FAST!
+//  delayMicroseconds(6);		//SS needs to be high 6us before data - Spark is FAST!
   sendbyte(SHARPMEM_BIT_WRITECMD | _sharpmem_vcom);
   TOGGLE_VCOM;
+
+  SPI.setBitOrder(LSBFIRST);
 
   // Send the address for line 1
   oldline = currentline = 1;
@@ -264,7 +273,13 @@ void Adafruit_SharpMem::refresh(void)
 
   // Send another trailing 8 bits for the last line
   sendbyteLSB(0x00);
-  delayMicroseconds(2);		//SS needs to be low 2us after data before going high - Spark is FAST!
+//  delayMicroseconds(2);		//SS needs to be low 2us after data before going high - Spark is FAST!
   digitalWrite(_ss, LOW);
+  SPI.setBitOrder(MSBFIRST);
 }
 
+void Adafruit_SharpMem::hold(void) 
+{
+  sendbyte(SHARPMEM_BIT_WRITECMD | _sharpmem_vcom);
+  TOGGLE_VCOM;
+ }
